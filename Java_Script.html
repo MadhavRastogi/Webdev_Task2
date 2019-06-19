@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightpink;
+  margin-top: 20px;
+}
+#myDIV1 {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+#header {
+  font-size: 3.5em; 
+}
+
+#time {
+  font-size: 8em;
+  margin: 100px;
+}
+
+hr {
+  width: 40%; 
+  height: 1px; 
+  background:brown;
+  margin-top: 50px; 
+}
+
+
+#hexNum {
+  font-size: 2em;
+}
+</style>
+</head>
+<body background="C:\Users\MAHE\Desktop\TASK-1/img1.jpg">
+<h><font size="11"><center><u><i>Pick a genre you like</i></u></center></font></h>
+
+
+<button onclick="myFunction()"><font size="5"><u><i>Action</font></u></button>
+<button onclick="myFunction1()"><font size="5"><u><i>Romance</font></u></button>
+
+<div id="myDIV"><p><b><font size="5"><u><i>Brace yourself for some thrilling action</u></font></b></p>
+ <p1>"The Hunger Games"<br>
+ "Mocking Jay"<br>
+ "Insurgent"<br>
+ "The Maze Runner"<br>
+ "Divergent".</p1>
+</div>
+<div id="myDIV1"><p><font size="5"><b><u>Fall in Love with these books</u></b></font></p>
+"Passion on Park Avenue"<br>
+"Happily Ever After"<br>
+"Her Royal Highness"<br>
+"The Bride Test"<br>
+"Again but better"
+
+</div>
+
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function myFunction1() {
+  var x = document.getElementById("myDIV1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<h><center><font size="8"><u>The Clock is ticking away-------Hurry Up!!!</u></font></center></h>
+<center><div id="time" style="background-color:yellow"></div></center>
+<script>
+function time() {
+  var date = new Date();
+  var hours = date.getHours(); 
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var showTime = ""; 
+  var arr = [hours, minutes, seconds].map(function(num) {
+   
+    return num < 10 ? '0' + num : String(num); 
+  });
+  hours = arr[0];
+  minutes = arr[1];
+  seconds = arr[2];
+  
+  showTime = "~"+ hours +":" + minutes+ ":" + seconds+"~";
+  document.getElementById("time").textContent = showTime; 
+  
+  return hours + minutes + seconds;
+}
+function output(time) {
+  var color = '#' + time; 
+  document.body.style.height = '100vh'; 
+  document.getElementById("hexNum").textContent = color; 
+  document.body.bgColor = color;  
+}
+
+function startClick(callback) {
+  document.body.addEventListener('dblclick', function(event) {
+    callback();
+  });
+}
+
+function stopClick(callback, name) {
+  document.body.addEventListener('click', function(event) {
+    callback(name);
+  });
+}
+
+function init() {
+  var tick = setInterval(function() { output(time()); }, 1000);
+  stopClick(clearInterval, tick); 
+  startClick(init);
+}
+
+init(); 
+</script>
+</body>
+</html>
+
